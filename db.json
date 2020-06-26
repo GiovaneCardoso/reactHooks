@@ -1,38 +1,24 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Ygor",
       "lastName": "Neves",
-      "age": 23,
-      "squad": 1
-    },
-    {
-      "id": 2,
-      "name": "Vitor",
-      "lastName": "Hugo",
-      "age": 24,
-      "squad": 1
-    },
-    {
-      "id": 3,
-      "name": "Rafa",
-      "lastName": "Cruz",
-      "age": 30,
-      "squad": 2
-    },
-    {
-      "id": "4",
-      "name": "Giovane",
-      "lastName": "Cardoso",
-      "age": "22",
+      "age": "23",
       "squad": "1"
     },
     {
-      "id": "5",
-      "name": "Giovane",
-      "lastName": "Cardoso",
-      "age": "22",
+      "id": "2",
+      "name": "Vitor",
+      "lastName": "Hugo",
+      "age": "24",
+      "squad": "1"
+    },
+    {
+      "id": "3",
+      "name": "Rafa",
+      "lastName": "Cruz",
+      "age": "30",
       "squad": "2"
     }
   ],
