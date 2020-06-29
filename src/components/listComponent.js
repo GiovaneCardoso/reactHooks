@@ -66,7 +66,7 @@ const ListComponent = ()=> {
           onClick={()=>setEditForm(true)}>Alterar</button>
           <button value= {singleUser.id}
           onClick={e => deletaValor(e.target.value)}>Deletar</button>
-          { showEditForm ? <Update id={singleUser.id} user={user} setUser={setUser}></Update> : null}</>)}
+          { showEditForm ? <Update id={singleUser.id} user={user} setUser={setUser} setEditForm={setEditForm}></Update> : null}</>)}
          </ul>
           </>
           )

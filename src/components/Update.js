@@ -4,6 +4,7 @@ import axios from 'axios'
 const Update = (props)=> {
     const alteraForm = (data)=> {
         data.preventDefault();
+        props.setEditForm(false);
         axios.patch(`http://localhost:3000/users/${props.id}`, {
             name: formData.name,
             lastName: formData.lastName,
@@ -41,7 +42,7 @@ const Update = (props)=> {
         <input type="text" id="lastName" name="lastName" onChange={(e)=>changeForm(e)}></input><br />
         <input type="text" id="age" name="age" onChange={(e)=>changeForm(e)}></input><br />
         <input type="text" id="squad" name="squad" onChange={(e)=>changeForm(e)}></input><br />
-        <button onClick={(e)=>alteraForm(e) }>Atualizar</button>
+        <button onClick={(e)=>alteraForm(e)}>Atualizar</button>
       </div>
     </div>
     </>
