@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
+import Update from './Update'
 
 
 //useState = data do vue;
@@ -14,6 +15,7 @@ const ListComponent = ()=> {
     age: "",
     squad: ""
   })
+  const [ showEditForm, setEditForm] = useState(false);
   
 
   const getSquad = async ()=> {
@@ -22,39 +24,23 @@ const ListComponent = ()=> {
     setSquad(name);
   }
   const getUser = async ()=> {
-    const { data } = await axios.get("http://localhost:3000/users").then(
-        
-    )
+    const { data } = await axios.get("http://localhost:3000/users")
     let user = data
     setUser(user)
   }
   const submit = async (e)=> {
     e.preventDefault();
-    await axios.post("http://localhost:3000/users", sendUser).then(res=> {
-      getUser()
-    })
+    await axios.post("http://localhost:3000/users", sendUser)
+    getUser()
   }
   const info = (e)=> {
     const newUser = {...sendUser}
     newUser[e.target.id]= e.target.value
     setSendUser(newUser);
   }
-  const alteraValor = async (id)=> {
-    await axios.put(`http://localhost:3000/users/${id}`, {
-      id: id,
-      name: "Carlos",
-      lastName: "Alves",
-      age: 28,
-      squad: 2
-    }).then(
-      getUser()
-    )    
-  }
   const deletaValor = async (id)=> {
-    await axios.delete(`http://localhost:3000/users/${id}`).then(res=> {
+    await axios.delete(`http://localhost:3000/users/${id}`)
       getUser()
-     }
-    )
   }
 
   useEffect(()=> {
@@ -74,7 +60,13 @@ const ListComponent = ()=> {
           <>
           <h2>{singleSquad.name}</h2>
           <ul>
-          {user.filter(user => user.squad == singleSquad.id).map(singleUser => <><li className={singleSquad.id}>{singleUser.name}</li><button value= {singleUser.id} onClick={e => alteraValor(e.target.value)}>Alterar</button><button value= {singleUser.id} onClick={e => deletaValor(e.target.value)}>Deletar</button></>)}
+          {user.filter(user => user.squad == singleSquad.id).map(singleUser =>
+          <><li className={singleSquad.id}>{singleUser.name}</li>
+          <button value= {singleUser.id}
+          onClick={()=>setEditForm(true)}>Alterar</button>
+          <button value= {singleUser.id}
+          onClick={e => deletaValor(e.target.value)}>Deletar</button>
+          { showEditForm ? <Update id={singleUser.id} user={user} setUser={setUser}></Update> : null}</>)}
          </ul>
           </>
           )
@@ -83,7 +75,6 @@ const ListComponent = ()=> {
       </div>
       <div className="form" >
         <form id="form-submit" onSubmit={(e)=> submit(e)}>
-        {/* <input type="number" id="id" name="id" value={sendUser.id} onChange={(e)=>info(e)}></input><br /> */}
         <input type="text" id="name" name="name" value={sendUser.name} onChange={(e)=>info(e)}></input><br />
         <input type="text" id="lastName" name="lastName" value={sendUser.lastName} onChange={(e)=>info(e)}></input><br />
         <input type="text" id="age" name="age" value={sendUser.age} onChange={(e)=>info(e)}></input><br />

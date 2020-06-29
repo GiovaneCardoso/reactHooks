@@ -1,18 +1,11 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "Ygor",
-      "lastName": "Neves",
+      "id": "syEen7m",
+      "name": "Giovane Ferreira Cardoso",
+      "lastName": "Cardoso",
       "age": "23",
-      "squad": "1"
-    },
-    {
-      "id": "3gEanRB",
-      "name": "Vitor",
-      "lastName": "Hugo",
-      "age": "24",
-      "squad": "1"
+      "squad": "2"
     }
   ],
   "squads": [
