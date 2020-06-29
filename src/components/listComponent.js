@@ -28,9 +28,9 @@ const ListComponent = ()=> {
     let user = data
     setUser(user)
   }
-  const submit = (e)=> {
+  const submit = async (e)=> {
     e.preventDefault();
-    axios.post("http://localhost:3000/users", sendUser).then(res=> {
+    await axios.post("http://localhost:3000/users", sendUser).then(res=> {
       getUser()
     })
   }
@@ -39,8 +39,8 @@ const ListComponent = ()=> {
     newUser[e.target.id]= e.target.value
     setSendUser(newUser);
   }
-  const alteraValor = (id)=> {
-    axios.put(`http://localhost:3000/users/${id}`, {
+  const alteraValor = async (id)=> {
+    await axios.put(`http://localhost:3000/users/${id}`, {
       id: id,
       name: "Carlos",
       lastName: "Alves",
@@ -50,9 +50,10 @@ const ListComponent = ()=> {
       getUser()
     )    
   }
-  const deletaValor = (id)=> {
-    axios.delete(`http://localhost:3000/users/${id}`).then(
+  const deletaValor = async (id)=> {
+    await axios.delete(`http://localhost:3000/users/${id}`).then(res=> {
       getUser()
+     }
     )
   }
 
@@ -82,7 +83,7 @@ const ListComponent = ()=> {
       </div>
       <div className="form" >
         <form id="form-submit" onSubmit={(e)=> submit(e)}>
-        <input type="number" id="id" name="id" value={sendUser.id} onChange={(e)=>info(e)}></input><br />
+        {/* <input type="number" id="id" name="id" value={sendUser.id} onChange={(e)=>info(e)}></input><br /> */}
         <input type="text" id="name" name="name" value={sendUser.name} onChange={(e)=>info(e)}></input><br />
         <input type="text" id="lastName" name="lastName" value={sendUser.lastName} onChange={(e)=>info(e)}></input><br />
         <input type="text" id="age" name="age" value={sendUser.age} onChange={(e)=>info(e)}></input><br />
